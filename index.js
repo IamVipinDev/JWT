@@ -1,17 +1,16 @@
-const express = require("express");
-require("dotenv").config();
-require("./config/db");
-const PORT = process.env.API_PORT;
-const app = express();
+const http = require("http");
+const app = require("./app");
+const server = http.createServer(app);
 
-app.use(express.json());
+const { API_PORT } = process.env;
+const port = process.env.PORT || API_PORT;
 
 app.get("/", (req, res) => {
   res.json({
-    Id: "this work",
+    greet: "hello vipin this work",
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on PORT ${PORT}...`);
+server.listen(port, () => {
+  console.log(`Server listening on port ${port} ...`);
 });
