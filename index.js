@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  console.log("It works");
+  res.json({
+    Id: "this work",
+  });
 });
 
 app.listen(3000, () => {
