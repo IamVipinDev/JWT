@@ -3,7 +3,7 @@ require("./config/db");
 const express = require("express");
 const app = express();
 const bcrypt = require("bcryptjs");
-
+const auth = require("./middleware/auth");
 //accessing JSON object from the Request
 app.use(express.json());
 
@@ -92,6 +92,8 @@ app.post("/login", async (req, res) => {
   // Our register logic ends here
 });
 
-//Logic goes here
-
+app.post("/welcome", auth, (req, res) => {
+  const { first_name } = req.body;
+  res.status(200).send(`Welcome  ${first_name} 🙌`);
+});
 module.exports = app;
